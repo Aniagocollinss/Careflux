@@ -1,4 +1,4 @@
-body {
+body { 
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -6,10 +6,17 @@ body {
 
 /* Navbar */
 .navbar {
-     background: linear-gradient(-45deg, gray, white, gray, white );
+    background: linear-gradient(-45deg, gray, white, gray, white );
     transition: 0.3s;
     font-size: 22px;
+
+    /* FIXED HEADER + STACK ORDER */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
 }
+
 .snake {
     font-size: 30px;
     font-weight: bolder;
@@ -17,10 +24,10 @@ body {
 .care {
     font-size: 30px;
     font-weight: bolder;
-     color: red;
+    color: red;
 }
 .flux {
-     font-size: 30px;
+    font-size: 30px;
     font-weight: bolder;
 }
 
@@ -37,13 +44,13 @@ body {
 
 /* Hero Section */
 .health {
-color: black;
-font-weight: bolder;
-font-size: 40px;
+    color: black;
+    font-weight: bolder;
+    font-size: 40px;
 }
 .subhealth {
     color: black;
-font-style: italic;
+    font-style: italic;
 }
 .appoint {
     background-color: red;
@@ -53,15 +60,16 @@ font-style: italic;
     background-color: black;
 }
 
-
+/* UPDATED HERO SECTION WITH TOP PADDING TO AVOID BEING COVERED */
 .hero-section {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-  background: linear-gradient(-45deg, gray, white, gray, white );
+    background: linear-gradient(-45deg, gray, white, gray, white );
     color: white;
     text-align: left;
-    padding: 50px 0;
+    padding: 120px 0 80px 0; /* added top padding to account for fixed navbar */
+    overflow: hidden;
 }
 
 .hero-section .container {
@@ -103,9 +111,6 @@ font-style: italic;
     }
 }
 
-
-
-
 #gallery {
     background: #f8f9fa;
 }
@@ -118,55 +123,59 @@ font-style: italic;
     transform: scale(1.05);
 }
 
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
 
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
 
+    /* Fade-in animation */
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
 
+.image-container.show {
+    opacity: 1;
+    transform: scale(1);
+}
 
+.image-container img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+.image-container:hover img {
+    transform: scale(1.1);
+}
 
-
-
- .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            padding: 20px;
-        }
-        .image-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-        .image-container img {
-            width: 100%;
-            display: block;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-        .image-container:hover img {
-            transform: scale(1.1);
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 0, 0, 0.5); /* Semi-transparent red */
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .image-container:hover .overlay {
-            opacity: 1;
-        }
-
-
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 0, 0, 0.5); /* Semi-transparent red */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.image-container:hover .overlay {
+    opacity: 1;
+}
 
 footer {
     background: linear-gradient(-45deg, gray, white, gray, white );
@@ -180,50 +189,26 @@ footer a {
     margin-top: 10px;
 }
 
-.x {
-    font-size: 25px;
-    font-weight: bolder;
-    padding-right: 15px
-}
-.fb {
-    font-size: 25px;
-    font-weight: bolder;
-     padding-right: 15px
-}
-.git {
-font-size: 25px;
-    font-weight: bolder;
-     padding-right: 15px
-}
-.ig {
-    font-size: 25px;
-    font-weight: bolder;
-     padding-right: 15px
-}
+.x,
+.fb,
+.git,
+.ig,
 .link {
     font-size: 25px;
     font-weight: bolder;
-     padding-right: 15px
+    padding-right: 15px;
 }
 
-.x:hover {color: white; }  
-.fb:hover {color: #1877F2; }  
-.git:hover {color: #333; }  
- 
-.ig:hover {color: #FF0050; }  
-.link:hover {color: deepskyblue; }
+.x:hover { color: white; }  
+.fb:hover { color: #1877F2; }  
+.git:hover { color: #333; }  
+.ig:hover { color: #FF0050; }  
+.link:hover { color: deepskyblue; }
 
-
-
-
-
-.image-container {
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+/* RESPONSIVE FIX FOR SMALL SCREENS — PUSH HERO BELOW FIXED NAV */
+@media (max-width: 768px) {
+    .hero-section {
+        padding-top: 140px; /* increased top padding for collapsed navbar */
+        text-align: center;
+    }
 }
-.image-container.show {
-    opacity: 1;
-    transform: scale(1);
-}
-
